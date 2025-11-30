@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkmate - Mental Health Support</title>
+<style>
+    
+    body {
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+        /* Bright Gradient Background */
+        background: linear-gradient(135deg, #ffe4e1 0%, #8fd3f4 100%);
+        color: #333;
+        overflow-x: hidden;
+    }
+
+    .header {
+        background-color: #faebd7; /* antique white */
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .menu-icon {
+        font-size: 30px;
+        cursor: pointer;
+        margin-right: 20px;
+        color: #000000; /* Black */
+        user-select: none;
+    }
+
+    .brand {
+        font-size: 28px;
+        font-weight: bold;
+        color: #000000; 
+        letter-spacing: 10px;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        background-color: #fff; /* White background for contrast */
+        overflow-x: hidden;
+        transition: 0.2s;
+        padding-top: 60px;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+        border-right: 5px solid #000000; /* black */
+    }
+
+    .sidenav a {
+        padding: 15px 25px;
+        text-decoration: none;
+        font-size: 22px;
+        color: #333;
+        display: block;
+        transition: 0.3s;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .sidenav a:hover {
+        background-color: #000000
+        color: white;
+    }
+
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 40px;
+        margin-left: 50px;
+        color: #ff4081 !important;
+    }
+
+    .submenu {
+        display: none;
+        background-color: #e6e6fa; /* Lavender */
+        padding-left: 30px;
+    }
+    
+    .submenu p {
+        font-size: 18px;
+        padding: 8px 0;
+        margin: 0;
+        color: #006064;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+        font-size: 64px;
+        color: #bc8f8f; /* rosy brown */
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+
+    .tagline-main {
+        font-size: 30px;
+        color: #6495ed; /* corn flower blue */
+        font-style: italic;
+        margin: 5px 0;
+    }
+
+    .tagline-sub {
+        font-size: 24px;
+        color: #6495ed; /* corn flower blue */
+        margin-bottom: 30px;
+    }
+
+    .content-text {
+        font-size: 20px;
+        line-height: 1.6;
+        text-align: justify;
+        margin-bottom: 40px;
+    }
+
+    .inquiry-box {
+        border: 3px solid #ffeb3b;
+        padding:25px;
+        border-radius: 5px;
+        background-color: #fffde7;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 2px solid #b2ebf2;
+        border-radius: 5px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size:16px;
+        box-sizing: border-box;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #ff4081;
+    }
+
+    .btn-submit {
+        background-color: #00e676; /* Bright Green */
+        color: #004d40;
+        border: none;
+        padding: 15px 40px;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        transform: scale(1.05);
+        background-color: #00c853;
+    }
+
+    .footer {
+        margin-top: 90px;
+        padding: 40px;
+        text-align: center;
+        background-color: #333;
+        color: white;
+    }
+
+    .footer a {
+        color: #ffeb3b;
+        text-decoration: none;
+        font-size: 30px;
+    }
+   
+    @media (max-width: 768px) {
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        .tagline-main {
+            font-size: 24px;
+        }
+
+        .tagline-sub {
+            font-size: 20px;
+        }
+        
+        .content-text, .submenu p {
+            font-size: 18px;
+        }
+
+        .brand {
+            letter-spacing: 5px;
+            font-size: 24px;
+        }
+
+        .sidenav {
+            width: 0;
+        }
+        
+        .sidenav a {
+            font-size: 20px;
+        }
+        
+        .sidenav-open {
+            width: 70%; /* Open to 70% of screen width */
+            max-width: 350px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .header {
+            padding: 15px;
+        }
+        
+        .menu-icon {
+            font-size: 24px;
+        }
+        
+        .brand {
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+        
+        h1 {
+            font-size: 36px;
+        }
+        
+        .tagline-main {
+            font-size: 18px;
+        }
+
+        .tagline-sub {
+            font-size: 16px;
+        }
+        
+        .footer {
+            padding: 20px;
+        }
+        
+        .footer a {
+            font-size: 24px;
+        }
+        
+        .btn-submit {
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <span class="menu-icon" onclick="openNav()">&#9776; MENU</span>
+    <div class="brand">CHECKMATE</div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+    <a onclick="toggleSubmenu('about')">About &#9662;</a>
+    <div id="about" class="submenu">
+        <p>Checkmate is dedicated to mental wellness awareness webpage where we teach and learn about basic mental health 
+	conditions and how they affect us and our daily life.</p>
+	<p>In Checkmate we talk about how one can take care of themselves.</p>
+	<p>Poor mental health is not inevitable. There are things we can do as individuals, in our communities and 
+	across society to help us all to live with good mental health.</p> 
+    </div>
+
+    <a onclick="toggleSubmenu('helpline')">Helpline &#9662;</a>
+    <div id="helpline" class="submenu">
+        <p>Emergency: 911</p>
+        <p>Suicide Prevention: 988</p>
+        <p>Crisis Text Line: 741741</p>
+	<p>India: Vandrevala Foundation Helpline: 1860 266 2345</p>
+	<p>MPower Minds Helpline: 1800-120-820050</p>
+	<p>Fortis Helpline: +91-8376804102</p>
+	<p>1Life Suicide Prevention & Crisis Support Helpline: 7893078930</p>
+	<p>Voice That Cares (VTC) Helpline: 8448-8448-45</p>
+    </div>
+
+    <a onclick="toggleSubmenu('more')">More about Mental Health &#9662;</a>
+    <div id="more" class="submenu">
+        <p>- Mental health includes our emotional, psychological, and social well-being.</p>
+	<p>Mental health is a state of mental well-being that enables people to cope with the
+	stresses of life, realize their abilities, learn and work well, and contribute to their community.</p>
+	<p>Mental health conditions include mental disorders and psychosocial disabilities as
+	well as other mental states associated with significant distress, impairment in functioning,
+	or risk of self-harm. Many mental health conditions can be effectively treated at relatively 
+	low cost, yet health systems remain significantly under-resourced and treatment gaps are wide
+	all over the world.</p>
+	<p>MENTAL HEALTH PROMOTION AND PREVENTION:</p>
+	<p>Promotion and prevention efforts aim to improve mental health by addressing individual, social
+	and structural determinants of mental health. Interventions can be designed for individuals, 
+	specific groups or whole populations.
+	<p>Suicide prevention is a global priority and part of the Sustainable Development Goals. Key 
+	strategies include limiting access to means, promoting responsible media reporting, supporting social 
+	and emotional learning for adolescents, and ensuring early intervention. Banning highly hazardous 
+	pesticides is a particularly inexpensive and cost–effective intervention for reducing suicide rates.
+	<p>Suicide prevention is a global priority and part of the Sustainable Development Goals. Key strategies 
+	include limiting access to means, promoting responsible media reporting, supporting social and emotional 
+	learning for adolescents, and ensuring early intervention. Banning highly hazardous pesticides is a 
+	particularly inexpensive and cost–effective intervention for reducing suicide rates.</p>
+	<p>Mental health at work is a growing area of interest and can be supported through legislation and 
+	regulation, workplace policies, manager training and targeted interventions for workers.</p>
+	<p>SOME COMMON TYPES OF MEANTAL HEALTH DISORDERS:</p>
+
+	<p>1. Anxiety Disorders :
+	Anxiety disorders are characterized by excessive fear or worry. Common types include:
+	Generalized Anxiety Disorder (GAD): Persistent and excessive worry about various aspects of life.
+	Panic Disorder: Recurrent panic attacks and intense fear that triggers physical symptoms.
+	Social Anxiety Disorder: Fear of social situations and being judged by others.</p>
+
+	<p>2. Mood Disorders :
+	Mood disorders involve significant changes in mood and emotional state. Key types include:
+	Major Depressive Disorder: Persistent feelings of sadness, hopelessness, and loss of interest in activities.
+	Bipolar Disorder: Alternating periods of depression and mania, characterized by extreme mood swings.</p>
+
+	<p>3. Psychotic Disorders :
+	Psychotic disorders affect a person's perception of reality. The most notable example is:
+	Schizophrenia: Involves hallucinations, delusions, and disorganized thinking, impacting daily functioning.</p>
+
+	<p>4. Eating Disorders :
+	Eating disorders involve unhealthy eating behaviors and attitudes towards food. Common types include:
+	Anorexia Nervosa: Extreme restriction of food intake and an intense fear of gaining weight.
+	Bulimia Nervosa: Binge eating followed by purging to prevent weight gain.</p>
+
+	<p>5. Personality Disorders :
+	Personality disorders are characterized by enduring patterns of behavior and inner experiences that deviate 
+	from cultural expectations. Examples include:
+	Borderline Personality Disorder: Instability in relationships, self-image, and emotions.
+	Antisocial Personality Disorder: Disregard for the rights of others and social norms.</p>
+	
+	<p>6. Post-Traumatic Stress Disorder (PTSD) :
+	PTSD develops after experiencing or witnessing a traumatic event. Symptoms may include flashbacks, nightmares, 
+	and severe anxiety related to the trauma.</p>
+	
+	<p>7. Impulse Control Disorders :
+	These disorders involve difficulty controlling impulses, leading to harmful behaviors. Examples include:
+	Intermittent Explosive Disorder: Sudden episodes of unwarranted anger.
+	Kleptomania: Compulsive stealing of items not needed for personal use.</p>
+    </div>
+
+    <a onclick="toggleSubmenu('selfcare')">Self Care Tips &#9662;</a>
+    <div id="selfcare" class="submenu">
+        <p>1. Prioritize sleep</p>
+        <p>2. Exercise regularly</p>
+        <p>3. Eat healthy meals</p>
+        <p>4. Practice gratitude</p>
+	<p>5. Write down your feelings and thoughts.</p>
+  	<p>6. Stay connected with friends and families.</p>
+   	<p>7. Talk to someone you trust.</p>
+   	<p>8. Take deep breaths and meditate.</p>
+  	<p>9. Get enough sleep.</p>
+  	<p>10. Limit news and social media intake.</p>
+  	<p>11. Engage in a hobby you enjoy</p>
+    </div>
+
+    <a onclick="toggleSubmenu('signs')">Signs of Mental Problems &#9662;</a>
+    <div id="signs" class="submenu">
+        <p>- Eating or sleeping too much or too little</p>
+        <p>- Pulling away from people</p>
+        <p>- Having low or no energy</p>
+	<p>- Feeling sad or down</p>
+	<p>- Confused thinking or reduced ability to concentrate</p>
+	<p>- Excessive fears or worries, or extreme feelings of guilt</p>
+	<p>- Extreme mood changes of highs and lows</p>
+	<p>- Withdrawal from friends and activities</p>
+	<p>- Significant tiredness, low energy or problems sleeping</p>
+	<p>- Detachment from reality (delusions), paranoia or hallucinations</p>
+	<p>- Inability to cope with daily problems or stress</p>
+	<p>- Trouble understanding and relating to situations and to people</p>
+	<p>- Problems with alcohol or drug use(in adults)</p>
+	<p>- Major changes in eating habits</p>
+	<p>- Sex drive changes(in adults)</p>
+	<p>- Excessive anger, hostility or violence</p>
+	<p>- Suicidal thinking</p>
+    </div>
+</div>
+
+<div class="container">
+    <h1>CHECKMATE</h1>
+    <div class="tagline-main">"You are never alone"</div>
+    <div class="tagline-sub">"It's okay to reach out for help"</div>
+
+    <div class="content-text">
+       WHAT IS MENTAL HEALTH?</h>
+	<p>Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act.
+	It also helps determine how we handle stress, relate to others, and make choices. Mental health is important at every
+	stage of life, from childhood and adolescence through adulthood.</p>
+        <p>Over the course of your life, if you experience mental health problems, your thinking, mood, and behavior could be
+	 affected. Many factors contribute to mental health problems, including biological factors, such as genes or brain chemistry,
+	 life experiences, such as trauma or abuse, and family history of mental health problems.</p>
+	<p>Mental illness, also called mental health disorders, refers to a wide range of mental health conditions — disorders
+	 that affect your mood, thinking and behavior. Examples of mental illness include depression, anxiety disorders,
+	 schizophrenia, eating disorders and addictive behaviors.</p>
+	<p>Many people have mental health concerns from time to time. But a mental health concern becomes a mental illness when
+	 ongoing signs and symptoms cause frequent stress and affect your ability to function.</p>
+	<p>A mental illness can make you miserable and can cause problems in your daily life, such as at school or work or in
+	 relationships. In most cases, symptoms can be managed with a combination of medications and talk therapy (psychotherapy).</p>
+    </div>
+
+    <div class="inquiry-box">
+        <h3>Suggestions / Inquiry Box</h3>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+            <input type="text" class="form-input" placeholder="Name (Optional)">
+            <input type="email" class="form-input" id="userEmail" placeholder="Email (Required)" required>
+            <textarea class="form-input" rows="5" placeholder="Your suggestion or inquiry..."></textarea>
+            <button type="submit" class="btn-submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Contact us on:</p>
+    <a href="mailto:withcheckmate@gmail.com">withcheckmate@gmail.com</a>
+</div>
+
+<script>
+    function openNav() {
+        // Use the CSS class for mobile responsiveness
+        var sidenav = document.getElementById("mySidenav");
+        if (window.innerWidth <= 768) {
+            sidenav.classList.add("sidenav-open");
+        } else {
+            sidenav.style.width = "500px";
+        }
+    }
+
+    function closeNav() {
+        var sidenav = document.getElementById("mySidenav");
+        sidenav.style.width = "0";
+        sidenav.classList.remove("sidenav-open");
+    }
+
+    function toggleSubmenu(id) {
+        var x = document.getElementById(id);
+        // Close other submenus logic (optional, keeps it clean)
+        var allSubs = document.getElementsByClassName("submenu");
+        for(var i=0; i<allSubs.length; i++){
+            if(allSubs[i].id !== id) allSubs[i].style.display = "none";
+        }
+        
+        // Toggle current
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        var email = document.getElementById("userEmail").value;
+        alert("Thank you! Your inquiry has been sent to Checkmate support.\nWe will contact you at: " + email);
+        document.getElementById("contactForm").reset();
+    }
+</script>
+
+</body>
+</html>
+withcheckmate
